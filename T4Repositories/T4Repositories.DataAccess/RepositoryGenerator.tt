@@ -1,0 +1,23 @@
+﻿<#@  include file="RepositoryTemplate.tt" #>
+<#@ assembly name="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#+
+// <copyright file="RepositoryGenerator.tt" company="">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+
+public class RepositoryGenerator : Generator
+{
+	public RepositoryTemplate Template = new RepositoryTemplate();
+
+	protected override void RunCore()
+	{
+		var classes = new string[]{"User", "Product"};
+
+		foreach(var item in classes){
+			Template.ClassName = item;
+			Template.RenderToFile(item + "Repository.generated.cs");
+        }
+	}
+}
+#>

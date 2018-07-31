@@ -1,0 +1,33 @@
+﻿<#+
+// <copyright file="RepositoryTemplate.tt" company="">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+
+public class RepositoryTemplate : CSharpTemplate
+{
+	public string ClassName;
+
+	public override string TransformText()
+	{
+		base.TransformText();
+#>
+using T4Repositories.Models;
+using T4Repositories.Logic.Repositories;
+using System;
+
+namespace <#= DefaultNamespace #>
+{
+	public partial class <#= Identifier(ClassName) #>Repository : BaseRepository<<#= Identifier(ClassName) #>>, I<#= Identifier(ClassName) #>Repository
+	{
+		public <#= Identifier(ClassName) #>Repository(Lazy<DataContext> db)
+			: base(db)
+			{
+
+			}
+	}
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>
