@@ -9,9 +9,9 @@ using T4Repositories.Models;
 
 namespace T4Repositories.DataAccess
 {
-    public abstract class BaseRepository<T> : IRepository<T> where T : BaseModel, new()
+    public abstract class Repository<T> : IRepository<T> where T : BaseModel, new()
     {
-        public BaseRepository(Lazy<DataContext> dataContext)
+        public Repository(Lazy<DataContext> dataContext)
         {
             if (dataContext == null)
             {

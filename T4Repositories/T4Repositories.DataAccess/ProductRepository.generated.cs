@@ -9,7 +9,7 @@ using System;
 
 namespace T4Repositories.DataAccess
 {
-	public partial class ProductRepository : BaseRepository<Product>, IProductRepository
+	public partial class ProductRepository : Repository<Product>, IProductRepository
 	{
 		public ProductRepository(Lazy<DataContext> db)
 			: base(db)

@@ -17,7 +17,7 @@ using System;
 
 namespace <#= DefaultNamespace #>
 {
-	public partial class <#= Identifier(ClassName) #>Repository : BaseRepository<<#= Identifier(ClassName) #>>, I<#= Identifier(ClassName) #>Repository
+	public partial class <#= Identifier(ClassName) #>Repository : Repository<<#= Identifier(ClassName) #>>, I<#= Identifier(ClassName) #>Repository
 	{
 		public <#= Identifier(ClassName) #>Repository(Lazy<DataContext> db)
 			: base(db)

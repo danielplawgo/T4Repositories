@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseRepository.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Migrations\201807310421365_Initial.cs" />
     <Compile Include="Migrations\201807310421365_Initial.Designer.cs">
