@@ -1,6 +1,5 @@
 ﻿<#@  include file="RepositoryTemplate.tt" #>
 <#@ assembly name="System" #>
-<#@ import namespace="System.Collections.Generic" #>
 <#+
 // <copyright file="RepositoryGenerator.tt" company="">
 //  Copyright © . All Rights Reserved.
