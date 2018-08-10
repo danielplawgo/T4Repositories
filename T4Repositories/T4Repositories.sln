@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Repositories.DataAccess",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Repositories.Models", "T4Repositories.Models\T4Repositories.Models.csproj", "{2E83378A-C59A-4DA3-83BA-9A3A27FC2821}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Repositories.Web", "T4Repositories.Web\T4Repositories.Web.csproj", "{916C8368-F0F8-4EEC-A3F7-5178F7C64816}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2E83378A-C59A-4DA3-83BA-9A3A27FC2821}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E83378A-C59A-4DA3-83BA-9A3A27FC2821}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E83378A-C59A-4DA3-83BA-9A3A27FC2821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{916C8368-F0F8-4EEC-A3F7-5178F7C64816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{916C8368-F0F8-4EEC-A3F7-5178F7C64816}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{916C8368-F0F8-4EEC-A3F7-5178F7C64816}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{916C8368-F0F8-4EEC-A3F7-5178F7C64816}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
