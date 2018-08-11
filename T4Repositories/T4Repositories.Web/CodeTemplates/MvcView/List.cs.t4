@@ -1,7 +1,7 @@
 ﻿<#@ template language="C#" HostSpecific="True" #>
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
-@model IEnumerable<#= "<" + ViewDataTypeName + ">" #>
+@model <#= ViewDataTypeName.Substring(0, ViewDataTypeName.LastIndexOf(".")) + ".IndexViewModel" #>
 <#
 // The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
 if(IsPartialView) {
@@ -47,71 +47,74 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-<#
-IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
-foreach (PropertyMetadata property in properties) {
-    if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
-#>
-<#
-        // This is a temporary work around until core scaffolding provides support for independent associations.
-        if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
-            continue;
-        }
-#>
-        <th>
-            @Html.DisplayNameFor(model => model.<#= GetValueExpression(property) #>)
-        </th>
-<#
-    }
-}
-#>
-        <th></th>
-    </tr>
+@if(Model.Items != null && Model.Items.Count > 0)
+{
+	<table class="table">
+		<tr>
+	<#
+	IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
+	foreach (PropertyMetadata property in properties) {
+		if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey && property.PropertyName != "PageTitle") {
+	#>
+	<#
+			// This is a temporary work around until core scaffolding provides support for independent associations.
+			if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+				continue;
+			}
+	#>
+			<th>
+				@Html.DisplayNameFor(model => model.Items[0].<#= GetValueExpression(property) #>)
+			</th>
+	<#
+		}
+	}
+	#>
+			<th></th>
+		</tr>
 
-@foreach (var item in Model) {
-    <tr>
-<#
-foreach (PropertyMetadata property in properties) {
-    if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
-#>
-<#
-        // This is a temporary work around until core scaffolding provides support for independent associations.
-        if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
-            continue;
-        }
-#>
-        <td>
-            @Html.DisplayFor(modelItem => <#= "item." + GetValueExpression(property) #>)
-        </td>
-<#
-    }
-}
+	@foreach (var item in Model.Items) {
+		<tr>
+	<#
+	foreach (PropertyMetadata property in properties) {
+		if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey && property.PropertyName != "PageTitle") {
+	#>
+	<#
+			// This is a temporary work around until core scaffolding provides support for independent associations.
+			if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+				continue;
+			}
+	#>
+			<td>
+				@Html.DisplayFor(modelItem => <#= "item." + GetValueExpression(property) #>)
+			</td>
+	<#
+		}
+	}
 
-string pkName = GetPrimaryKeyName();
-if (pkName != null) {
-#>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.<#= pkName #> }) |
-            @Html.ActionLink("Details", "Details", new { id=item.<#= pkName #> }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.<#= pkName #> })
-        </td>
-<#
-} else {
-#>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-<#
-}
-#>
-    </tr>
-}
+	string pkName = GetPrimaryKeyName();
+	if (pkName != null) {
+	#>
+			<td>
+				@Html.ActionLink("Edit", "Edit", new { id=item.<#= pkName #> }) |
+				@Html.ActionLink("Details", "Details", new { id=item.<#= pkName #> }) |
+				@Html.ActionLink("Delete", "Delete", new { id=item.<#= pkName #> })
+			</td>
+	<#
+	} else {
+	#>
+			<td>
+				@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+				@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+				@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+			</td>
+	<#
+	}
+	#>
+		</tr>
+	}
 
-</table>
+	</table>
+}
 <#
 // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
 #>

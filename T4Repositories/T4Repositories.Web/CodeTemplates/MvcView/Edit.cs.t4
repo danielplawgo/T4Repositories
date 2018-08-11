@@ -80,7 +80,7 @@ if (ReferenceScriptLibraries) {
         @Html.ValidationSummary(true)
 <#
 foreach (PropertyMetadata property in ModelMetadata.Properties) {
-    if (property.Scaffold && !property.IsAssociation) {
+    if (property.Scaffold && !property.IsAssociation && property.PropertyName != "PageTitle") {
         if (property.IsPrimaryKey) {
 #>
         @Html.HiddenFor(model => model.<#= property.PropertyName #>)

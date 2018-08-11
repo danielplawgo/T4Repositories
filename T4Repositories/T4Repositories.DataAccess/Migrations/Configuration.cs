@@ -29,6 +29,18 @@ namespace T4Repositories.DataAccess.Migrations
                     context.Users.AddOrUpdate(u => u.UserName, user);
                 }
             }
+
+            if (context.Products.Any() == false)
+            {
+                var users = new Faker<Product>()
+                    .RuleFor(u => u.Name, (f, u) => f.Commerce.ProductName())
+                    .Generate(10);
+
+                foreach (var user in users)
+                {
+                    context.Products.AddOrUpdate(u => u.Name, user);
+                }
+            }
         }
     }
 }

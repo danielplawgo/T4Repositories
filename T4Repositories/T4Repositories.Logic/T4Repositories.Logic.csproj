@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILogic.cs" />
+    <Compile Include="IProductLogic.cs" />
+    <Compile Include="ProductLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IProductRepository.generated.cs">
       <DependentUpon>IRepositoryScript.tt</DependentUpon>

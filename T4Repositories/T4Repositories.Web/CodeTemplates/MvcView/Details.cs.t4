@@ -50,7 +50,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
     <dl class="dl-horizontal">
 <#
 foreach (PropertyMetadata property in ModelMetadata.Properties) {
-    if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+    if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey && property.PropertyName != "PageTitle") {
 #>
 <#
         // This is a temporary work around until core scaffolding provides support for independent associations.
